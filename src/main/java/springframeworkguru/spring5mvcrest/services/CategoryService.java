@@ -1,0 +1,14 @@
+package springframeworkguru.spring5mvcrest.services;
+
+import org.springframework.stereotype.Service;
+import springframeworkguru.spring5mvcrest.api.v1.model.CategoryDTO;
+
+import java.util.List;
+@Service
+public interface CategoryService {
+
+    List<CategoryDTO> getAllCategories();
+
+    CategoryDTO getCategoryByName(String name);
+
+}
