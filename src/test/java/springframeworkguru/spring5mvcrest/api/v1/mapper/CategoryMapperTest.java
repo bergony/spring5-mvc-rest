@@ -13,7 +13,7 @@ public class CategoryMapperTest {
     CategoryMapper categoryMapper = CategoryMapper.INSTANCE;
 
     @Test
-    public void categoryToCategoryDto() throws Exception {
+    public void categoryToCategoryDto() {
 
         //Given
         Category category = new Category();
@@ -24,7 +24,7 @@ public class CategoryMapperTest {
         CategoryDTO categoryDTO = categoryMapper.categoryToCategoryDTO(category);
 
         //then
-        assertEquals(java.util.Optional.ofNullable(Long.valueOf(ID)), java.util.Optional.of(categoryDTO.getId()));
+        assertEquals(java.util.Optional.of(ID), java.util.Optional.of(categoryDTO.getId()));
         assertEquals(NAME, categoryDTO.getName());
 
     }

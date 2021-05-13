@@ -9,12 +9,10 @@ import springframeworkguru.spring5mvcrest.api.v1.model.CategoryDTO;
 import springframeworkguru.spring5mvcrest.domain.Category;
 import springframeworkguru.spring5mvcrest.repositories.CategoryRepository;
 
-import javax.naming.Name;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -28,7 +26,8 @@ public class CategoryServiceTest {
     CategoryRepository categoryRepository;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
+        //noinspection deprecation
         MockitoAnnotations.initMocks(this);
 
         categoryService = new CategoryServiceImpl(CategoryMapper.INSTANCE, categoryRepository);
