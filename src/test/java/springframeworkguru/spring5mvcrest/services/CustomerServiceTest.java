@@ -8,7 +8,6 @@ import springframeworkguru.spring5mvcrest.api.v1.mapper.CustomerMapper;
 import springframeworkguru.spring5mvcrest.api.v1.model.CustomerDTO;
 import springframeworkguru.spring5mvcrest.domain.Customer;
 import springframeworkguru.spring5mvcrest.repositories.CustomerRepository;
-import sun.security.x509.OtherName;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,8 +15,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class CustomerServiceTest {
 
@@ -109,5 +107,16 @@ public class CustomerServiceTest {
 
         assertEquals(customerDTO.getFirstname(), savedDto.getFirstname());
         assertEquals("/api/v1/customers/1", savedDto.getCostumerUrl());
+    }
+
+    @Test
+    public void deleteCustomerById() {
+
+        long id = 1L;
+
+        customerRepository.deleteById(id);
+
+        verify(customerRepository, times(1)).deleteById(anyLong());
+
     }
 }
