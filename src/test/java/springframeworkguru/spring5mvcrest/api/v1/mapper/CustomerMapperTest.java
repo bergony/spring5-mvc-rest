@@ -16,9 +16,9 @@ public class CustomerMapperTest {
         //Criar Ojecto para teste GIVEM
         Customer customer = new Customer();
         String FIRSTNAME = "Bergony";
-        customer.setFirstName(FIRSTNAME);
+        customer.setFirstname(FIRSTNAME);
         String LASTANAME = "BANDERA";
-        customer.setLastName(LASTANAME);
+        customer.setLastname(LASTANAME);
         long ID = 1L;
         customer.setId(ID);
 
@@ -28,8 +28,8 @@ public class CustomerMapperTest {
 
         //Verficar os valores
         assertEquals(customer.getId(), customerDTO.getId());
-        assertEquals(customer.getFirstName(), customerDTO.getFirstName());
-        assertEquals(customer.getLastName(), customerDTO.getLastName());
+        assertEquals(customer.getFirstname(), customerDTO.getFirstname());
+        assertEquals(customer.getLastname(), customerDTO.getLastname());
 
     }
 }
