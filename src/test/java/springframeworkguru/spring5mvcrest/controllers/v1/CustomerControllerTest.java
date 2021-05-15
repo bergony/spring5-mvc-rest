@@ -10,6 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import springframeworkguru.spring5mvcrest.api.v1.model.CustomerDTO;
 import springframeworkguru.spring5mvcrest.services.CustomerService;
+import springframeworkguru.spring5mvcrest.services.ResourceNotFoundException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,8 +18,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -164,5 +164,14 @@ public class CustomerControllerTest {
 
         verify(customerService).deleteCustomerById(anyLong());
 
+    }
+
+    @Test
+    public void testGetByNameNotFound() throws Exception{
+        when(customerService.getCustomerById(anyLong())).thenThrow(ResourceNotFoundException.class);
+
+        mockMvc.perform(get(CategoryController.BASE_URL + "/foo")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 }
