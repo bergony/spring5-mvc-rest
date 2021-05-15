@@ -9,10 +9,12 @@ import springframeworkguru.spring5mvcrest.api.v1.model.CustomerListDTO;
 import springframeworkguru.spring5mvcrest.services.CustomerService;
 
 @Controller
-@RequestMapping("/api/v1/customers")
+@RequestMapping(CustomerController.BASE_URL)
 public class CustomerController {
 
     private final CustomerService customerService;
+
+    public static final String BASE_URL = "/api/v1/customers";
 
 
     public CustomerController(CustomerService customerService) {

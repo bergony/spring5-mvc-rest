@@ -3,6 +3,7 @@ package springframeworkguru.spring5mvcrest.services;
 import org.springframework.stereotype.Service;
 import springframeworkguru.spring5mvcrest.api.v1.mapper.CustomerMapper;
 import springframeworkguru.spring5mvcrest.api.v1.model.CustomerDTO;
+import springframeworkguru.spring5mvcrest.controllers.v1.CustomerController;
 import springframeworkguru.spring5mvcrest.domain.Customer;
 import springframeworkguru.spring5mvcrest.repositories.CustomerRepository;
 
@@ -26,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .stream()
                 .map(customer -> {
                     CustomerDTO customerDTO = customerMapper.customerToCustomerDOT(customer);
-                    customerDTO.setCostumerUrl("/api/v1/customers/" + customer.getId());
+                    customerDTO.setCostumerUrl(getCustomerUrl(customer.getId()));
                     return customerDTO;
                 })
                 .collect(Collectors.toList());
@@ -52,7 +53,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         CustomerDTO returnDto = customerMapper.customerToCustomerDOT(savedCustomer);
 
-        returnDto.setCostumerUrl("/api/v1/customers/" + savedCustomer.getId());
+        returnDto.setCostumerUrl(getCustomerUrl(savedCustomer.getId()));
 
         return returnDto;
     }
@@ -78,10 +79,14 @@ public class CustomerServiceImpl implements CustomerService {
             }
 
             CustomerDTO returnDTO = customerMapper.customerToCustomerDOT(customerRepository.save(customer));
-            returnDTO.setCostumerUrl("/api/v1/customers/" + id);
+            returnDTO.setCostumerUrl(getCustomerUrl(id));
             return returnDTO;
 
         }).orElseThrow(RuntimeException::new);
+    }
+
+    private String getCustomerUrl(Long id) {
+        return CustomerController.BASE_URL + "/" + id;
     }
 
     @Override

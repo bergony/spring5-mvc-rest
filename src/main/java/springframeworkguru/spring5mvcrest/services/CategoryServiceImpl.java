@@ -3,6 +3,8 @@ package springframeworkguru.spring5mvcrest.services;
 import org.springframework.stereotype.Service;
 import springframeworkguru.spring5mvcrest.api.v1.mapper.CategoryMapper;
 import springframeworkguru.spring5mvcrest.api.v1.model.CategoryDTO;
+import springframeworkguru.spring5mvcrest.controllers.v1.CategoryController;
+import springframeworkguru.spring5mvcrest.controllers.v1.CustomerController;
 import springframeworkguru.spring5mvcrest.repositories.CategoryRepository;
 
 import java.util.List;
@@ -25,6 +27,10 @@ public class CategoryServiceImpl implements CategoryService {
                 .stream()
                 .map(categoryMapper::categoryToCategoryDTO)
                 .collect(Collectors.toList());
+    }
+
+    private String getCategoryUrl(Long id) {
+        return CategoryController.BASE_URL + "/" + id;
     }
 
     @Override

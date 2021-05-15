@@ -15,8 +15,10 @@ import springframeworkguru.spring5mvcrest.services.CategoryService;
  * Created by jt on 9/26/17.
  */
 @Controller
-@RequestMapping("/api/v1/categories/")
+@RequestMapping(CategoryController.BASE_URL)
 public class CategoryController {
+
+    public static final String BASE_URL = "/api/v1/categories/";
 
     private final CategoryService categoryService;
 
