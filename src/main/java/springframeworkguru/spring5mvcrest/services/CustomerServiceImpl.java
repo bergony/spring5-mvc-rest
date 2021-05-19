@@ -48,7 +48,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     private CustomerDTO saveAndReturnDTO(Customer customer) {
 
-
         Customer savedCustomer = customerRepository.save(customer);
 
         CustomerDTO returnDto = customerMapper.customerToCustomerDOT(savedCustomer);

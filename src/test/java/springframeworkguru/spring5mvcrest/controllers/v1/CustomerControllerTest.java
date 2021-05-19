@@ -96,7 +96,7 @@ public class CustomerControllerTest {
         CustomerDTO returnDTO = new CustomerDTO();
         returnDTO.setFirstname(customerDTO.getFirstname());
         returnDTO.setLastname(customerDTO.getLastname());
-        returnDTO.setCostumerUrl(CustomerController.BASE_URL + "1");
+        returnDTO.setCostumerUrl(CustomerController.BASE_URL + "/1");
 
         when(customerService.createNewCustomer(customerDTO)).thenReturn(returnDTO);
 
@@ -105,7 +105,7 @@ public class CustomerControllerTest {
                 .content(asJsonString(customerDTO)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.firstname", equalTo("bergony")))
-                .andExpect(jsonPath("$.customer_url", equalTo( CustomerController.BASE_URL + "1")));
+                .andExpect(jsonPath("$.customer_url", equalTo( CustomerController.BASE_URL + "/1")));
     }
 
     @Test

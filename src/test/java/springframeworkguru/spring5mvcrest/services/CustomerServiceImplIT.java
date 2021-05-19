@@ -13,6 +13,7 @@ import springframeworkguru.spring5mvcrest.bootstrap.Bootstrap;
 import springframeworkguru.spring5mvcrest.domain.Customer;
 import springframeworkguru.spring5mvcrest.repositories.CategoryRepository;
 import springframeworkguru.spring5mvcrest.repositories.CustomerRepository;
+import springframeworkguru.spring5mvcrest.repositories.VendorRepostitory;
 
 import java.util.List;
 
@@ -31,6 +32,9 @@ public class CustomerServiceImplIT {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Autowired
+    VendorRepostitory vendorRepostitory;
+
     CustomerService customerService;
 
     @Before
@@ -39,7 +43,7 @@ public class CustomerServiceImplIT {
         System.out.println(customerRepository.findAll().size());
 
         //setup data for testing
-        Bootstrap bootstrap = new Bootstrap(categoryRepository, customerRepository);
+        Bootstrap bootstrap = new Bootstrap(categoryRepository, customerRepository, vendorRepostitory);
         bootstrap.run();
 
         customerService = new CustomerServiceImpl(customerRepository, CustomerMapper.INSTANCE);

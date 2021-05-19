@@ -4,18 +4,22 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import springframeworkguru.spring5mvcrest.domain.Category;
 import springframeworkguru.spring5mvcrest.domain.Customer;
+import springframeworkguru.spring5mvcrest.domain.Vendor;
 import springframeworkguru.spring5mvcrest.repositories.CategoryRepository;
 import springframeworkguru.spring5mvcrest.repositories.CustomerRepository;
+import springframeworkguru.spring5mvcrest.repositories.VendorRepostitory;
 
 @Component
 public class Bootstrap implements CommandLineRunner {
 
     private CategoryRepository categoryRepository;
     private CustomerRepository customerRepository;
+    private VendorRepostitory vendorRepostitory;
 
-    public Bootstrap(CategoryRepository categoryRepository, CustomerRepository customerRepository) {
+    public Bootstrap(CategoryRepository categoryRepository, CustomerRepository customerRepository, VendorRepostitory vendorRepostitory) {
         this.categoryRepository = categoryRepository;
         this.customerRepository = customerRepository;
+        this.vendorRepostitory = vendorRepostitory;
     }
 
     @Override
@@ -23,9 +27,26 @@ public class Bootstrap implements CommandLineRunner {
 
         LoadCategories();
         LoadCustomers();
+        LoadVendors();
 
 
     }
+
+    private void LoadVendors(){
+        Vendor vendor = new Vendor();
+        vendor.setName("Bergony");
+        vendorRepostitory.save(vendor);
+
+        Vendor vendor1 = new Vendor();
+        vendor1.setName("Bergony1");
+        vendorRepostitory.save(vendor1);
+
+        System.out.println("Data Loaded vendors = " + vendorRepostitory.count());
+
+    }
+
+
+
 
     private void LoadCategories() {
         Category fruits = new Category();
