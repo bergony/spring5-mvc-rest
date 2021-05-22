@@ -1,11 +1,14 @@
 package springframeworkguru.spring5mvcrest.controllers.v1;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import springframeworkguru.spring5mvcrest.api.v1.model.CustomerDTO;
 import springframeworkguru.spring5mvcrest.api.v1.model.CustomerListDTO;
 import springframeworkguru.spring5mvcrest.services.CustomerService;
 
+@Api(description = "This my customer Controller")
 @RestController
 @RequestMapping(CustomerController.BASE_URL)
 public class CustomerController {
@@ -19,6 +22,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    @ApiOperation(value = "Thiw will get a list of custumores.", notes = "There are some notes about the API.")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public CustomerListDTO getALLCategories() {
