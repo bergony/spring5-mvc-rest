@@ -3,7 +3,7 @@ package springframeworkguru.spring5mvcrest.api.v1.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import springframeworkguru.spring5mvcrest.api.v1.model.CustomerDTO;
+import springframeworkguru.model.CustomerDTO;
 import springframeworkguru.spring5mvcrest.domain.Customer;
 
 @Mapper

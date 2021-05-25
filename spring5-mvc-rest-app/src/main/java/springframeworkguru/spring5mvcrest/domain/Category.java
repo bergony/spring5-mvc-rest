@@ -1,5 +1,7 @@
 package springframeworkguru.spring5mvcrest.domain;
 
+
+
 import lombok.Data;
 
 import javax.persistence.Entity;

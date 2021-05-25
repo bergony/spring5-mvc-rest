@@ -8,7 +8,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import springframeworkguru.spring5mvcrest.api.v1.model.CustomerDTO;
+import springframeworkguru.model.CustomerDTO;
 import springframeworkguru.spring5mvcrest.services.CustomerService;
 import springframeworkguru.spring5mvcrest.services.ResourceNotFoundException;
 
@@ -98,9 +98,9 @@ public class CustomerControllerTest {
         CustomerDTO returnDTO = new CustomerDTO();
         returnDTO.setFirstname(customerDTO.getFirstname());
         returnDTO.setLastname(customerDTO.getLastname());
-        returnDTO.setCostumerUrl(CustomerController.BASE_URL + "/1");
+        returnDTO.setCustomerUrl(CustomerController.BASE_URL + "/1");
 
-        when(customerService.createNewCustomer(customerDTO)).thenReturn(returnDTO);
+        when(customerService.createNewCustomer(any())).thenReturn(returnDTO);
 
         mockMvc.perform(post(CustomerController.BASE_URL)
                 .accept(MediaType.APPLICATION_JSON)
@@ -108,7 +108,7 @@ public class CustomerControllerTest {
                 .content(asJsonString(customerDTO)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.firstname", equalTo("bergony")))
-                .andExpect(jsonPath("$.customer_url", equalTo(CustomerController.BASE_URL + "/1")));
+                .andExpect(jsonPath("$.customerUrl", equalTo(CustomerController.BASE_URL + "/1")));
     }
 
     @Test
@@ -122,7 +122,7 @@ public class CustomerControllerTest {
         CustomerDTO returnDTO = new CustomerDTO();
         returnDTO.setFirstname(customerDTO.getFirstname());
         returnDTO.setLastname(customerDTO.getLastname());
-        returnDTO.setCostumerUrl(CustomerController.BASE_URL + "1");
+        returnDTO.setCustomerUrl(CustomerController.BASE_URL + "1");
 
         when(customerService.saveCustomerByDTO(anyLong(), any(CustomerDTO.class))).thenReturn(returnDTO);
 
@@ -132,7 +132,7 @@ public class CustomerControllerTest {
                 .content(asJsonString(customerDTO)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstname", equalTo("bergony")))
-                .andExpect(jsonPath("$.customer_url", equalTo(CustomerController.BASE_URL + "1")));
+                .andExpect(jsonPath("$.customerUrl", equalTo(CustomerController.BASE_URL + "1")));
 
     }
 
@@ -146,7 +146,7 @@ public class CustomerControllerTest {
         CustomerDTO returnDTO = new CustomerDTO();
         returnDTO.setFirstname(customerDTO.getFirstname());
         returnDTO.setLastname("Bandeira");
-        returnDTO.setCostumerUrl(CustomerController.BASE_URL + "1");
+        returnDTO.setCustomerUrl(CustomerController.BASE_URL + "1");
 
         when(customerService.pathCustomer(anyLong(), any(CustomerDTO.class))).thenReturn(returnDTO);
 
@@ -157,7 +157,7 @@ public class CustomerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstname", equalTo("Bergony")))
                 .andExpect(jsonPath("$.lastname", equalTo("Bandeira")))
-                .andExpect(jsonPath("$.customer_url", equalTo(CustomerController.BASE_URL + "1")));
+                .andExpect(jsonPath("$.customerUrl", equalTo(CustomerController.BASE_URL + "1")));
     }
 
     @Test

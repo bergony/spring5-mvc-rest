@@ -1,7 +1,7 @@
 package springframeworkguru.spring5mvcrest.api.v1.mapper;
 
 import org.junit.Test;
-import springframeworkguru.spring5mvcrest.api.v1.model.CustomerDTO;
+import springframeworkguru.model.CustomerDTO;
 import springframeworkguru.spring5mvcrest.domain.Customer;
 
 import static org.junit.Assert.assertEquals;
@@ -27,7 +27,6 @@ public class CustomerMapperTest {
 
 
         //Verficar os valores
-        assertEquals(customer.getId(), customerDTO.getId());
         assertEquals(customer.getFirstname(), customerDTO.getFirstname());
         assertEquals(customer.getLastname(), customerDTO.getLastname());
 

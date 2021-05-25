@@ -2,7 +2,7 @@ package springframeworkguru.spring5mvcrest.services;
 
 import org.springframework.stereotype.Service;
 import springframeworkguru.spring5mvcrest.api.v1.mapper.CustomerMapper;
-import springframeworkguru.spring5mvcrest.api.v1.model.CustomerDTO;
+import springframeworkguru.model.CustomerDTO;
 import springframeworkguru.spring5mvcrest.controllers.v1.CustomerController;
 import springframeworkguru.spring5mvcrest.domain.Customer;
 import springframeworkguru.spring5mvcrest.repositories.CustomerRepository;
@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .stream()
                 .map(customer -> {
                     CustomerDTO customerDTO = customerMapper.customerToCustomerDOT(customer);
-                    customerDTO.setCostumerUrl(getCustomerUrl(customer.getId()));
+                    customerDTO.setCustomerUrl(getCustomerUrl(customer.getId()));
                     return customerDTO;
                 })
                 .collect(Collectors.toList());
@@ -52,7 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         CustomerDTO returnDto = customerMapper.customerToCustomerDOT(savedCustomer);
 
-        returnDto.setCostumerUrl(getCustomerUrl(savedCustomer.getId()));
+        returnDto.setCustomerUrl(getCustomerUrl(savedCustomer.getId()));
 
         return returnDto;
     }
@@ -78,7 +78,7 @@ public class CustomerServiceImpl implements CustomerService {
             }
 
             CustomerDTO returnDTO = customerMapper.customerToCustomerDOT(customerRepository.save(customer));
-            returnDTO.setCostumerUrl(getCustomerUrl(id));
+            returnDTO.setCustomerUrl(getCustomerUrl(id));
             return returnDTO;
 
         }).orElseThrow(ResourceNotFoundException::new);

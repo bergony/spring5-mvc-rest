@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import springframeworkguru.spring5mvcrest.api.v1.mapper.CustomerMapper;
-import springframeworkguru.spring5mvcrest.api.v1.model.CustomerDTO;
+import springframeworkguru.model.CustomerDTO;
 import springframeworkguru.spring5mvcrest.bootstrap.Bootstrap;
 import springframeworkguru.spring5mvcrest.domain.Customer;
 import springframeworkguru.spring5mvcrest.repositories.CategoryRepository;
